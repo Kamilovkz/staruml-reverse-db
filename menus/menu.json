@@ -33,6 +33,15 @@
                 { "type": "separator" },
                 { "label": "Configure Server...", "id": "tools.db.postgresql.configure", "command": "reverse-db-postgresql:configure" }
               ]
+            },
+            {
+              "label": "Clickhouse Server",
+              "id": "tools.db.clickhouse",
+              "submenu": [
+                { "label": "Generate ER Data Model...", "id": "tools.db.clickhouse.generate.erd", "command": "reverse-db-clickhouse:generate-erd" },
+                { "type": "separator" },
+                { "label": "Configure Server...", "id": "tools.db.clickhouse.configure", "command": "reverse-db-clickhouse:configure" }
+              ]
             }
           ]
         }
