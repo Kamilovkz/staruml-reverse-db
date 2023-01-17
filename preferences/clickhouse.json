@@ -1,0 +1,62 @@
+{
+    "id": "db.clickhouse",
+    "name": "Clickhouse Server",
+    "schema": {
+      "db.clickhouse.connection": {
+        "text": "Clickhouse Connection",
+        "type": "section"
+      },
+      "db.clickhouse.connection.username": {
+        "text": "Username",
+        "description": "Username for database connection.",
+        "type": "string",
+        "default": ""
+      },
+      "db.clickhouse.connection.password": {
+        "text": "Password",
+        "description": "Password for database connection.",
+        "type": "string",
+        "default": ""
+      },
+      "db.clickhouse.connection.server": {
+        "text": "Server IP",
+        "description": "IP address of the database server.",
+        "type": "string",
+        "default": "localhost"
+      },
+      "db.clickhouse.connection.owner": {
+        "text": "Table Schema (Database Schema)",
+        "description": "Table Schema (Database Schema)",
+        "type": "string",
+        "default": ""
+      },
+      "db.clickhouse.connection.options": {
+        "text": "Database Connection",
+        "type": "section"
+      },
+      "db.clickhouse.connection.options.port": {
+        "text": "Server Port",
+        "description": "Port number to access the database server.",
+        "type": "number",
+        "default": 3306
+      },
+      "db.clickhouse.connection.options.database": {
+        "text": "Table Catalog (Database)",
+        "description": "Table Catalog (Database)",
+        "type": "string",
+        "default": "def"
+      },
+      "db.clickhouse.connection.options.ssl": {
+        "text": "SSL",
+        "description": "Enable SSL",
+        "type": "check",
+        "default": false
+      },
+      "db.clickhouse.connection.options.logging": {
+        "text": "Logging",
+        "description": "Logging",
+        "type": "check",
+        "default": false
+      }
+    }
+  }
