@@ -55,6 +55,12 @@ This extension for [StarUML](http://staruml.io) support to generate ER Data Mode
 
 Belows are the rules to convert from database schema to ER Data Model elements.
 
+
+### Clickhouse (use PosgreSQL)
+
+This extension make from PostgreSQL database similar schemas but some changes...
+
+
 ### Table
 
 * Converted to `type.ERDEntity`
