@@ -1,16 +1,16 @@
 const DbManager = require("../db/DbManager");
-const PostgreSqlDbClient = require("./ClickhouseDbClient");
+const PostgreSqlDbClient = require("./PostgreSqlDbClient");
 
-class ClickhouseManager extends DbManager {
+class PostgreSqlManager extends DbManager {
 
   /**
-   * ClickhouseManager
+   * MySqlManager
    *
    * @constructor
    * @param {object} options
    */
   constructor(options) {
-    super(new ClickhouseDbClient(options && {
+    super(new PostgreSqlDbClient(options && {
       user: options.userName,
       password: options.password,
       host: options.server,
@@ -22,4 +22,4 @@ class ClickhouseManager extends DbManager {
   }
 }
 
-module.exports = ClickhouseManager;
+module.exports = PostgreSqlManager;

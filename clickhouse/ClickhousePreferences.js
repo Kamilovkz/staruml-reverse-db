@@ -1,14 +1,14 @@
 const DbPreferences = require("../db/DbPreferences");
 
-class ClickhousePreferences extends DbPreferences {
+class PostgreSqlPreferences extends DbPreferences {
   /**
-   * ClickhousePreferences
+   * PostgreSqlPreferences
    *
    * @constructor
    */
   constructor() {
-    super("db.clickhouse");
+    super("db.postgresql");
   }
 }
 
-module.exports = ClickhousePreferences;
+module.exports = PostgreSqlPreferences;

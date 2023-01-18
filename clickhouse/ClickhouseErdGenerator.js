@@ -1,16 +1,16 @@
 const DbErdGenerator = require("../db/DbErdGenerator");
-const PostgreSqlAnalyzer = require("./ClickhouseAnalyzer");
+const PostgreSqlAnalyzer = require("./PostgreSqlAnalyzer");
 
-class ClickhouseErdGenerator extends DbErdGenerator {
+class PostgreSqlErdGenerator extends DbErdGenerator {
 
   /**
-   * ClickhouseErdGenerator
+   * PostgreSqlErdGenerator
    *
    * @constructor
    */
   constructor(options, model) {
-    super(options, new ClickhouseAnalyzer(options, model));
+    super(options, new PostgreSqlAnalyzer(options, model));
   }
 }
 
-module.exports = ClickhouseErdGenerator;
+module.exports = PostgreSqlErdGenerator;

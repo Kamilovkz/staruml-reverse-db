@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const types = require('pg').types;
 const BIT_OID = 1560;
 
-class ClickhouseDbClient extends DbClient {
+class PostgreSqlDbClient extends DbClient {
   constructor(options) {
     super(options, null, {
       min: 5,
@@ -33,4 +33,4 @@ class ClickhouseDbClient extends DbClient {
   }
 }
 
-module.exports = ClickhouseDbClient;
+module.exports = PostgreSqlDbClient;
