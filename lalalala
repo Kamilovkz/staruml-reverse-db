@@ -1,0 +1,41 @@
+analyze() {
+    const sqlStr = "SELECT "
+        + "  database                                           AS table_catalog, "
+        + "  column.database                                    AS owner, " // from system.columns
+        + "  column.table                                       AS table_name, " // from system.columns
+        + "  column.name                                        AS column_name, " // from system.columns
+        + "  column.position                                    AS ordinal_position, " // from system.columns
+        + "  column.default_kind, column.default_expression     AS default_setting, " // from system.columns
+        + "  column.type                                        AS data_type, " // from system.columns
+        + "  column.max_compressed_block_size                   AS max_length, " // from system.columns
+        + "  column.datetime_precision                          AS date_precision, " // from system.columns
+        + "  column.is_nullable = 1                             AS is_nullable, " // from system.columns
+        + "FROM system.columns AS column "
+        + "  LEFT JOIN INFORMATION_SCHEMA.TABLES as tbl "
+        + "  USING (TABLE_SCHEMA, TABLE_NAME)"
+        + "  LEFT JOIN (SELECT "
+        + "               k.TABLE_SCHEMA    AS TABLE_SCHEMA, "
+        + "               k.TABLE_NAME      AS TABLE_NAME, "
+        + "               k.COLUMN_NAME     AS COLUMN_NAME, "
+        + "               t.CONSTRAINT_TYPE AS CONSTRAINT_TYPE, "
+        + "               t.CONSTRAINT_NAME AS CONSTRAINT_NAME "
+        + "             FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS t "
+        + "               JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS k "
+        + "               USING (CONSTRAINT_NAME, TABLE_SCHEMA, TABLE_NAME) "
+        + "             WHERE k.POSITION_IN_UNIQUE_CONSTRAINT IS NULL) AS ks "
+        + "  USING (TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME) "
+        + "  LEFT JOIN (SELECT "
+        + "               k.TABLE_SCHEMA           AS TABLE_SCHEMA, "
+        + "               k.TABLE_NAME             AS TABLE_NAME, "
+        + "               k.COLUMN_NAME            AS COLUMN_NAME, "
+        + "               t.CONSTRAINT_TYPE        AS CONSTRAINT_TYPE, "
+        + "               t.CONSTRAINT_NAME        AS CONSTRAINT_NAME, "
+        + "               k.REFERENCED_TABLE_NAME  AS REFERENCED_TABLE_NAME, "
+        + "               k.REFERENCED_COLUMN_NAME AS REFERENCED_COLUMN_NAME "
+        + "             FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS k "
+        + "               JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS t "
+        + "               USING (CONSTRAINT_NAME, TABLE_SCHEMA, TABLE_NAME) "
+        + "             WHERE k.POSITION_IN_UNIQUE_CONSTRAINT IS NOT NULL) AS fk "
+        + "  USING (TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME) "
+        + "WHERE col.TABLE_SCHEMA = ? AND col.TABLE_CATALOG = ? "
+        + "ORDER BY col.TABLE_NAME, col.ORDINAL_POSITION;";
